@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+      http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+      http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+    <!-- 스프링 AOP 자동프록시 설정 -->
+    <aop:aspectj-autoproxy/>
+    <!-- root-context.xml파일의 역할은 서비스를 추가해서 스프링AOP를 통한 트랜잭션 적용, 모델 dao설정, mybatis설정,
+              데이터 베이스 연결 정보가 들어간다. -->
+
+
+    <!-- 스프링API를 통한 JDBC연결 즉 오라클 연결 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <!-- bean단위가 자바 클래스 단위이고 id명은 객체명에 해당한다. -->
+        <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+        <!-- driverClassName 멤버변수에 value 속성값을 저장 -->
+        <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
+        <!-- 오라클 접속주소 -->
+        <property name="username" value="night"/>
+        <property name="password" value="night"/>
+        <!-- 오라클 사용자와 비밀번호 -->
+    </bean>
+
+    <!-- 트랜잭션 매니저(관리자) 설정 -->
+    <bean id = "transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+        <!-- setter 메서드를 통한 의존성 주입. ref 빈아이디 dataSource를 호출 -->
+    </bean>
+</beans>
+
