@@ -26,8 +26,8 @@
         <!-- driverClassName 멤버변수에 value 속성값을 저장 -->
         <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
         <!-- 오라클 접속주소 -->
-        <property name="username" value="night"/>
-        <property name="password" value="night"/>
+        <property name="username" value="assemble"/>
+        <property name="password" value="assemble"/>
         <!-- 오라클 사용자와 비밀번호 -->
     </bean>
 
