@@ -15,7 +15,7 @@ create table users(
     user_delcont varchar2(4000),
     user_deldate date
 );
-drop table users;
+
 create sequence users_seq
 start with 1
 increment by 1
